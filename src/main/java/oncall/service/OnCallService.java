@@ -14,13 +14,11 @@ import oncall.repository.WorkRecordRepository;
 public class OnCallService {
     private static final List<String> WEEKEND = List.of("토", "일");
 
-    private final WorkerSelector workerSelector;
-
-    public OnCallService(WorkerSelector workerSelector) {
-        this.workerSelector = workerSelector;
-    }
+    private WorkerSelector workerSelector;
 
     public void createWorkSheet(StartOption startOption, Workers workers) {
+        workerSelector = new WorkerSelector(workers);
+
         int month = startOption.month();
         String dayOfTheWeek = startOption.dayOfTheWeek();
         WorkRecordRepository.addWorkRecord(1, selectWorker(month, 1, dayOfTheWeek));

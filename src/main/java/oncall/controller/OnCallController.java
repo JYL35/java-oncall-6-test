@@ -4,25 +4,31 @@ import java.util.List;
 import java.util.Map;
 import oncall.dto.StartOption;
 import oncall.dto.Workers;
+import oncall.service.OnCallService;
 import oncall.util.Parser;
 import oncall.view.InputView;
 import oncall.view.OutputView;
 
 public class OnCallController {
 
+    private final OnCallService onCallService;
     private final InputView inputView;
     private final OutputView outputView;
 
-    public OnCallController(InputView inputView, OutputView outputView) {
+    public OnCallController(OnCallService onCallService, InputView inputView, OutputView outputView) {
+        this.onCallService = onCallService;
         this.inputView = inputView;
         this.outputView = outputView;
     }
 
     public void start() {
-        StartOption startOption = readStartOption();
-        Workers workers = readWorkers();
-
-        // 배치 시작
+        try {
+            StartOption startOption = readStartOption();
+            Workers workers = readWorkers();
+            onCallService.createWorkSheet(startOption, workers);
+        } catch (RuntimeException e) {
+            outputView.printError(e);
+        }
     }
 
     private StartOption readStartOption() {
