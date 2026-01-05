@@ -27,4 +27,8 @@ public class WorkRecordRepository {
     public static WorkRecord findByDay(int day) {
         return workRecords.get(day);
     }
+
+    public static boolean isEmpty() {
+        return workRecords.isEmpty();
+    }
 }

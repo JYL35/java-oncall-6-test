@@ -24,7 +24,7 @@ public enum Calendar {
         this.lastDay = lastDay;
     }
 
-    public static int LastDayOfMonth(int month) {
+    public static int lastDayOfMonth(int month) {
         for (Calendar calendar : Calendar.values()) {
             if (calendar.getMonth() == month) {
                 return calendar.getLastDay();
