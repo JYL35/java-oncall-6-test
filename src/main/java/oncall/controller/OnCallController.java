@@ -1,5 +1,7 @@
 package oncall.controller;
 
+import java.util.List;
+import java.util.Map;
 import oncall.dto.StartOption;
 import oncall.util.Parser;
 import oncall.view.InputView;
@@ -17,7 +19,9 @@ public class OnCallController {
 
     public void start() {
         StartOption startOption = readStartOption();
-        // 평일/휴일 비상 근무자 입력 -> 파싱 및 검증
+        Map<String, List<String>> workers = readWorkers();
+
+        // 배치 시작
     }
 
     private StartOption readStartOption() {
@@ -25,6 +29,19 @@ public class OnCallController {
             try {
                 String inputMonthAndDayOfWeek = inputView.readMonthAndVip();
                 return Parser.parseStartOption(inputMonthAndDayOfWeek);
+            } catch (RuntimeException e) {
+                outputView.printError(e);
+            }
+        }
+    }
+
+    private Map<String, List<String>> readWorkers() {
+        while (true) {
+            try {
+                String inputWeekdayWorkers = inputView.readWeekdayEmployeeNicknames();
+                List<String> weekdayWokers = Parser.parseWeekdayWorkers(inputWeekdayWorkers);
+
+                // 주말 근무자 입력, 파싱, 검증
             } catch (RuntimeException e) {
                 outputView.printError(e);
             }

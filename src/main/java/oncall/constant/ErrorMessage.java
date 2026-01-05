@@ -8,6 +8,11 @@ public enum ErrorMessage {
     DAY_OF_THE_WEEK_IS_EMPTY("요일이 비어있습니다. 다시 입력해주세요."),
     DAY_OF_THE_WEEK_INVALID_FORMAT("잘못된 요일 형식입니다. 다시 입력해주세요."),
 
+    WEEKDAY_WORKERS_COUNT_OUT_OF_RANGE("평일 근무자들은 최소 5명, 최대 35명이어야합니다. 다시 입력해주세요."),
+    WEEKDAY_WORKER_IS_EMPTY("평일 근무자가 비어있습니다. 다시 입력해주세요."),
+    WEEKDAY_WORKER_NAME_OUT_OF_RANGE("평일 근무자 닉네임은 1~5글자이어야 합니다. 다시 입력해주세요."),
+    WEEKDAY_WORKERS_DUPLICATE("평일 근무자가 중복됩니다. 다시 입력해주세요."),
+
     INVALID_FORMAT("잘못된 형식을 입력하였습니다."),
     NOT_FOUND_NICKNAME("등록되지 않은 닉네임입니다.");
 
