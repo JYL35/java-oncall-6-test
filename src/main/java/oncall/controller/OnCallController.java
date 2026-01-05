@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 import oncall.dto.StartOption;
 import oncall.dto.Workers;
+import oncall.repository.WorkRecordRepository;
 import oncall.service.OnCallService;
 import oncall.util.Parser;
 import oncall.view.InputView;
@@ -30,6 +31,7 @@ public class OnCallController {
         } catch (RuntimeException e) {
             outputView.printError(e);
         }
+        WorkRecordRepository.deleteAll();
     }
 
     private StartOption readStartOption() {

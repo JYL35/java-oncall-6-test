@@ -34,6 +34,6 @@ public class OnCallService {
         if (WEEKEND.contains(dayOfTheWeek) || Holiday.isExist(month, day)) {
             return new WorkRecord(workerSelector.selectHolidayWorker(day), new DateInformation(dayOfTheWeek, true));
         }
-        return new WorkRecord(workerSelector.selectHolidayWorker(day), new DateInformation(dayOfTheWeek, false));
+        return new WorkRecord(workerSelector.selectWeekdayWorker(day), new DateInformation(dayOfTheWeek, false));
     }
 }

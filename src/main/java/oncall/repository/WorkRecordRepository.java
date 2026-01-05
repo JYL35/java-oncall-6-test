@@ -25,7 +25,10 @@ public class WorkRecordRepository {
     }
 
     public static WorkRecord findByDay(int day) {
-        return workRecords.get(day);
+        if (workRecords.containsKey(day)) {
+            return workRecords.get(day);
+        }
+        throw new IllegalArgumentException("해당 날짜의 업무 기록이 없습니다.");
     }
 
     public static boolean isEmpty() {
