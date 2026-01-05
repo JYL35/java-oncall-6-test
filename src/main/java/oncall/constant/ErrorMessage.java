@@ -1,0 +1,24 @@
+package oncall.constant;
+
+public enum ErrorMessage {
+    MONTH_IS_EMPTY("월이 비어있습니다. 다시 입력해주세요."),
+    MONTH_IS_NOT_NUMBER("월이 숫자가 아닙니다. 다시 입력해주세요."),
+    MONTH_OUT_OF_RANGE("월은 1~12이어야 합니다. 다시 입력해주세요."),
+
+    DAY_OF_THE_WEEK_IS_EMPTY("요일이 비어있습니다. 다시 입력해주세요."),
+    DAY_OF_THE_WEEK_INVALID_FORMAT("잘못된 요일 형식입니다. 다시 입력해주세요."),
+
+    INVALID_FORMAT("잘못된 형식을 입력하였습니다."),
+    NOT_FOUND_NICKNAME("등록되지 않은 닉네임입니다.");
+
+    private static final String PREFIX = "[ERROR] ";
+    private final String message;
+
+    ErrorMessage(String message) {
+        this.message = message;
+    }
+
+    public String getMessage() {
+        return PREFIX + message;
+    }
+}
