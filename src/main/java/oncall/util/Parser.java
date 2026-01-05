@@ -12,7 +12,7 @@ public class Parser {
         int month = Validator.validateMonth(startOption[0].strip());
         String dayOfTheWeek = Validator.validateDayOfTheWeek(startOption[1].strip());
 
-        return new StartOption(month, startOption[1]);
+        return new StartOption(month, dayOfTheWeek);
     }
 
     public static List<String> parseWeekdayWorkers(String input) {
@@ -20,5 +20,13 @@ public class Parser {
                 .stream(input.split(","))
                 .map(String::strip)
                 .toList());
+    }
+
+    public static List<String> parseHolidayWorkers(String input, List<String> weekdayWorkers) {
+        List<String> holidayWorkers = Arrays.stream(input.split(","))
+                .map(String::strip)
+                .toList();
+
+        return Validator.validateHolidayWorkers(holidayWorkers, weekdayWorkers);
     }
 }

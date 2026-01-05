@@ -3,6 +3,7 @@ package oncall.controller;
 import java.util.List;
 import java.util.Map;
 import oncall.dto.StartOption;
+import oncall.dto.Workers;
 import oncall.util.Parser;
 import oncall.view.InputView;
 import oncall.view.OutputView;
@@ -19,7 +20,7 @@ public class OnCallController {
 
     public void start() {
         StartOption startOption = readStartOption();
-        Map<String, List<String>> workers = readWorkers();
+        Workers workers = readWorkers();
 
         // 배치 시작
     }
@@ -35,13 +36,17 @@ public class OnCallController {
         }
     }
 
-    private Map<String, List<String>> readWorkers() {
+    private Workers readWorkers() {
         while (true) {
             try {
                 String inputWeekdayWorkers = inputView.readWeekdayEmployeeNicknames();
-                List<String> weekdayWokers = Parser.parseWeekdayWorkers(inputWeekdayWorkers);
+                List<String> weekdayWorkers = Parser.parseWeekdayWorkers(inputWeekdayWorkers);
 
-                // 주말 근무자 입력, 파싱, 검증
+
+                String inputHolidayWorkers = inputView.readHolidayEmployeeNicknames();
+                List<String> holidayWorkers = Parser.parseHolidayWorkers(inputHolidayWorkers, weekdayWorkers);
+
+                return new Workers(weekdayWorkers, holidayWorkers);
             } catch (RuntimeException e) {
                 outputView.printError(e);
             }

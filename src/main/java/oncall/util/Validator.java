@@ -29,6 +29,17 @@ public class Validator {
         return workers;
     }
 
+    public static List<String> validateHolidayWorkers(List<String> workers, List<String> weekdayWorkers) {
+        validateRange(5, 35, workers.size(), ErrorMessage.WEEKDAY_WORKERS_COUNT_OUT_OF_RANGE);
+        for (String worker : workers) {
+            validateEmpty(worker, ErrorMessage.WEEKDAY_WORKER_IS_EMPTY);
+            validateRange(1, 5, worker.length(), ErrorMessage.WEEKDAY_WORKER_NAME_OUT_OF_RANGE);
+            validateContains(worker, weekdayWorkers, ErrorMessage.INVALID_FORMAT);
+        }
+        validateDuplicate(workers, ErrorMessage.WEEKDAY_WORKERS_DUPLICATE);
+        return workers;
+    }
+
     private static void validateDuplicate(List<String> target, ErrorMessage errorMessage) {
         List<String> copyTarget = target.stream().distinct().toList();
         if (target.size() != copyTarget.size()) {
