@@ -2,19 +2,23 @@ package oncall.domain;
 
 public class WorkRecord {
 
-    private final String worker;
-    private final String dayOfTheWeek;
+    private final String workerName;
+    private final DateInformation dateInformation;
 
-    public WorkRecord(String worker, String dayOfTheWeek) {
-        this.worker = worker;
-        this.dayOfTheWeek = dayOfTheWeek;
+    public WorkRecord(String workerName, DateInformation dateInformation) {
+        this.workerName = workerName;
+        this.dateInformation = dateInformation;
     }
 
     public String getWorker() {
-        return worker;
+        return workerName;
     }
 
     public String getDayOfTheWeek() {
-        return dayOfTheWeek;
+        return dateInformation.getDayOfTheWeek();
+    }
+
+    public boolean isHoliday() {
+        return dateInformation.isHoliday();
     }
 }

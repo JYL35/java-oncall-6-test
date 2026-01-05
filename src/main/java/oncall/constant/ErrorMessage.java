@@ -19,6 +19,7 @@ public enum ErrorMessage {
     HOLIDAY_WORKERS_DUPLICATE("휴일 근무자가 중복됩니다. 다시 입력해주세요."),
     WORKERS_IS_WRONG("휴일 근무자 중 평일 근무자에 없는 사람이 있습니다. 다시 입력해주세요."),
 
+    NOT_FOUND_WORK_RECORD("근무 기록을 찾을 수 없습니다."),
     INVALID_FORMAT("잘못된 형식을 입력하였습니다."),
     NOT_FOUND_NICKNAME("등록되지 않은 닉네임입니다.");
 
