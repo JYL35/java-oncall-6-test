@@ -23,7 +23,7 @@ public class OnCallService {
         String dayOfTheWeek = startOption.dayOfTheWeek();
         WorkRecordRepository.addWorkRecord(1, selectWorker(month, 1, dayOfTheWeek));
 
-        int lastDay = Calendar.lastDayOfMonth(startOption.month());
+        int lastDay = Calendar.lastDayOfMonth(month);
         for (int day = 2; day <= lastDay; day++) {
             dayOfTheWeek = DayOfTheWeek.findNextDayOfTheWeek(dayOfTheWeek);
             WorkRecordRepository.addWorkRecord(day, selectWorker(month, day, dayOfTheWeek));

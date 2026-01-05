@@ -26,6 +26,7 @@ public class OnCallController {
             StartOption startOption = readStartOption();
             Workers workers = readWorkers();
             onCallService.createWorkSheet(startOption, workers);
+            outputView.printResult(startOption);
         } catch (RuntimeException e) {
             outputView.printError(e);
         }
